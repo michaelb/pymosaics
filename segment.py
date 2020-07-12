@@ -4,11 +4,13 @@ segments dans le plan
 from point import point_aleatoire, Point, tournepoint
 from math import cos, sin
 
+
 class Segment:
     """
     un segment du plan.
     """
-    def __init__(self, points, seul = 0):
+
+    def __init__(self, points, seul=0):
         """
         construit un segment a partir d'un vecteur de deux points
         """
@@ -69,21 +71,26 @@ class Segment:
         if self.contient(intersection) and autre.contient(intersection):
             return intersection
         return None
+
+
 def copiesegment(segment):
-    (x1,y1),(x2,y2) = segment.coordonnees()
-    return Segment([Point(x1,y1),Point(x2,y2)])
+    (x1, y1), (x2, y2) = segment.coordonnees()
+    return Segment([Point(x1, y1), Point(x2, y2)])
+
 
 def inversehorizontal(segment, taille):
-    p1,p2 = segment.points
-    inv = Segment([Point(taille[0] - p1.abscisse,p1.ordonnee), Point(taille[0] - p2.abscisse,p2.ordonnee)])
+    p1, p2 = segment.points
+    inv = Segment([Point(taille[0] - p1.abscisse, p1.ordonnee),
+                   Point(taille[0] - p2.abscisse, p2.ordonnee)])
     return inv
 
 
 def segmenttourne(segment, angle, centre):
-    """crée un 2e segment tourné d'un angle "angle"en radians cf centre un vecteur de coordonnees"""
-    p1, p2 = segment.points 
+    """crée un 2e segment tourné d'un angle "angle"en radians cf centre un 
+    vecteur de coordonnees"""
+    p1, p2 = segment.points
     p3, p4 = tournepoint(p1, centre, angle), tournepoint(p2, centre, angle)
-    return Segment([p3,p4])
+    return Segment([p3, p4])
 
 
 def segment_aleatoire(largeur=800, hauteur=600):
